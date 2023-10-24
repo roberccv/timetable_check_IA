@@ -1,11 +1,49 @@
 
 
+sumaHorasAsignatura(Asignatura, Horas) :-
+	asignatura(Asignatura),
+	horario(ListaDias),
+	sumaHorasAsignatura(Asignatura, ListaDias, Horas).
 
+sumaHorasAsignatura(_Asignatura, [], 0).
+sumaHorasAsignatura(Asignatura, [Dia | Resto], Horas) :-
+	seImparteAsignaturaEnDia(Asignatura, Dia),
+	sumaHorasAsignatura(Asignatura, Resto, HorasResto),
+	Horas is HorasResto + 1.
 
+sumaHorasAsignatura(Asignatura, [Dia | Resto], Horas) :-
+	\+ seImparteAsignaturaEnDia(Asignatura, Dia),
+	sumaHorasAsignatura(Asignatura, Resto, Horas).
 
+seImparteAsignaturaEnDia(Asignatura, lunes(L)) :- member(Asignatura, L). 
+seImparteAsignaturaEnDia(Asignatura, martes(L)) :- member(Asignatura, L). 
+seImparteAsignaturaEnDia(Asignatura, miercoles(L)) :- member(Asignatura, L). 
 
+comprobarAula():-
+	lunes(ClasesLunes),
+	ocuLunes(OcupadoLunes),
+	imprimirLista(ClasesLunes),
+	comprobacion(ClasesLunes, OcupadoLunes).
 
-% Asignaturas
+imprimirAlgo :-
+	ocuLunes(Algo),
+	write(Algo).
+
+imprimirLista([]).
+imprimirLista([A, B]):-
+	write(A),
+	imprimirLista(B).
+
+comprobacion([],[]).
+comprobacion([Cabeza | Cola], [Z | Y]):-
+	\+aulaA(Cabeza, Z),
+	comprobacion(Cola, Y).
+
+horario([lunes([a, b, c]),
+		 martes([a, b, d]),
+		 miercoles([b, c, d])]).
+
+% Asignaturas Oblg
 asignatura(a).
 asignatura(b).
 asignatura(c).
@@ -22,35 +60,32 @@ asignaturaOb(d).
 
 % Horas por asignatura
 
-HorasAsignatura(a , 2).
-HorasAsignatura(b, 3).
-HorasAsignatura(c,2).
-HorasAsignatura(d,1).
-HorasAsignatura(o1, 1).
-HorasAsignatura(o2, 1).
-HorasAsignatura(o3, 1).
+horasAsignatura(a , 2).
+horasAsignatura(b, 3).
+horasAsignatura(c,2).
+horasAsignatura(d,2).
+%horasAsignatura(o1, 1).
+%horasAsignatura(o2, 1).
+%horasAsignatura(o3, 1).
 
 % Aulas
-Aula(A1).
-Aula(A2).
-Aula(A3).
-Aula(A0).
+aula(a1).
+aula(a2).
+aula(a3).
+aula(a0).
 
 % Clases por cada asignatura
 
-AulaA(a, A2).
-AulaA(b, A1).
-AulaA(c, A3).
-AulaA(d, A3).
-AulaA(o1, A0).
-AulaA(o2, A0).
-AulaA(o3, A0).
-
-% Aulas ocupadas
-
-lunes(A1, n, n).
-martes(n, A2, A2).
-miercoles(A3, A2, A1).
+aulaA(a, a2).
+aulaA(b, a1).
+aulaA(c, a3).
+aulaA(d, a3).
+%aulaA(o1, a0).
+%aulaA(o2, a0).
+%aulaA(o3, a0).
 
 
+ocuLunes([a1, n, n]).
+ocuMartes([n, a2, a2]).
+ocuMiercoles([a3, a2, a1]).
 
