@@ -1,5 +1,18 @@
 
 
+comprobacionFinal:-
+	horario(ListaDias1),
+	comprobacionFinal(ListaDias1),
+	H is 3.
+
+comprobacionFinal([Dias1| Resto1], H):-
+	comprobarAula(Dias1),
+	H is H+1,
+	write(H),
+	comprobacionFinal(Resto1, H).
+
+comprobacionFinal([]).
+
 sumaHorasAsignatura(Asignatura, Horas) :-
 	asignatura(Asignatura),
 	horario(ListaDias),
@@ -19,20 +32,19 @@ seImparteAsignaturaEnDia(Asignatura, lunes(L)) :- member(Asignatura, L).
 seImparteAsignaturaEnDia(Asignatura, martes(L)) :- member(Asignatura, L). 
 seImparteAsignaturaEnDia(Asignatura, miercoles(L)) :- member(Asignatura, L). 
 
-comprobarAula():-
-	lunes(ClasesLunes),
+comprobarAula(lunes(ClasesLunes)):-
 	ocuLunes(OcupadoLunes),
-	imprimirLista(ClasesLunes),
 	comprobacion(ClasesLunes, OcupadoLunes).
 
-imprimirAlgo :-
-	ocuLunes(Algo),
-	write(Algo).
 
-imprimirLista([]).
-imprimirLista([A, B]):-
-	write(A),
-	imprimirLista(B).
+comprobarAula(martes(ClasesMartes)):-
+	ocuMartes(OcupadoMartes),
+	comprobacion(ClasesMartes, OcupadoMartes).
+
+comprobarAula(miercoles(ClasesMiercoles)):-
+	ocuLunes(OcupadoMiercoles),
+	imprimirLista(ClasesMiercoles),
+	comprobacion(ClasesMiercoles, OcupadoMiercoles).
 
 comprobacion([],[]).
 comprobacion([Cabeza | Cola], [Z | Y]):-
