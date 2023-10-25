@@ -60,8 +60,6 @@ __2. Para inicializar el programa abra dicha aplicación y escriba:__
 
   
 
-```
-
 NOMBRE:
 
 Validador de horarios 
@@ -73,8 +71,12 @@ Valida horarios conforme los criterios en la base de conocimientos
 
 
 MODO DE USO: 
- 
+
+```
+
 comprobacionFinal([lunes([a,b,c]), martes([a,b,o1]), miercoles([b,c,d])]).
+```
+
 
 El comando superior se corresponde con un horario válido, las asignaturas pueden ser modificadas a gusto.
 Las asignaturas existentes son las obligatorias (a,b,c y d)  y las optativas (o1, o2, o3). Importante destacar que el programa esta configurado para que solo pueda haber una asignatura de 
@@ -82,9 +84,13 @@ caracter optativo.
 
 EJEMPLOS ERRONEOS:
 
-comprobacionFinal([lunes([a,b,c]), martes([a,b,d]), miercoles([b,c,d])]). (Exceso horas d).
-comprobacionFinal([lunes([b,a,c]), martes([a,b,o1]), miercoles([b,c,d])]). (Aula de B el lunes ocupada).
-comprobacionFinal([lunes([a,b,c]), martes([a,b,o1]), miercoles([b,c,o2])]). (Varias optativas y falta de horas asignatura d).
+```
+
+comprobacionFinal([lunes([a,b,c]), martes([a,b,d]), miercoles([b,c,d])]). %(Exceso horas d).
+comprobacionFinal([lunes([b,a,c]), martes([a,b,o1]), miercoles([b,c,d])]). %(Aula de B el lunes ocupada).
+comprobacionFinal([lunes([a,b,c]), martes([a,b,o1]), miercoles([b,c,o2])]). %(Varias optativas y falta de horas asignatura d).
+
+```
 
 
 ## Despliegue
