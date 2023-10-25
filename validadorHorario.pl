@@ -1,14 +1,19 @@
 comprobacionFinal(M):-
 	comprobacionTodasLasAulas(M),
-	sumaHorasAsignatura(a, M, Horas),
-	horasAsignatura(a, Horas),
+	sumaHorasAsignatura(a, M, Horasa),
+	horasAsignatura(a, Horasa),
 	sumaHorasAsignatura(b,M, Horasb),
 	horasAsignatura(b, Horasb),
 	sumaHorasAsignatura(c, M, Horasc),
 	horasAsignatura(c, Horasc),
 	sumaHorasAsignatura(d, M, Horasd),
-	horasAsignatura(d, Horasd).
+	horasAsignatura(d, Horasd),
+	optativa(M).
 
+optativa(M):-
+	(sumaHorasAsignatura(o1, M , Horas1), horasAsignatura(o1, Horas1));
+	(sumaHorasAsignatura(o2, M , Horas2), horasAsignatura(o2, Horas2));
+	(sumaHorasAsignatura(o3, M , Horas3), horasAsignatura(o3, Horas3)).
 
 comprobacionTodasLasAulas(horario(ListaDias1)):-
 	comprobacionTodasLasAulas(ListaDias1).
@@ -75,10 +80,10 @@ asignaturaOb(d).
 horasAsignatura(a , 2).
 horasAsignatura(b, 3).
 horasAsignatura(c,2).
-horasAsignatura(d,2).
-%horasAsignatura(o1, 1).
-%horasAsignatura(o2, 1).
-%horasAsignatura(o3, 1).
+horasAsignatura(d,1).
+horasAsignatura(o1, 1).
+horasAsignatura(o2, 1).
+horasAsignatura(o3, 1).
 
 % Aulas
 aula(a1).
