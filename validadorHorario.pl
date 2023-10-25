@@ -1,21 +1,26 @@
+comprobacionFinal(M):-
+	comprobacionTodasLasAulas(M),
+	sumaHorasAsignatura(a, M, Horas),
+	horasAsignatura(a, Horas),
+	sumaHorasAsignatura(b,M, Horasb),
+	horasAsignatura(b, Horasb),
+	sumaHorasAsignatura(c, M, Horasc),
+	horasAsignatura(c, Horasc),
+	sumaHorasAsignatura(d, M, Horasd),
+	horasAsignatura(d, Horasd).
 
 
-comprobacionFinal:-
-	horario(ListaDias1),
-	comprobacionFinal(ListaDias1),
-	H is 3.
+comprobacionTodasLasAulas(horario(ListaDias1)):-
+	comprobacionTodasLasAulas(ListaDias1).
 
-comprobacionFinal([Dias1| Resto1], H):-
+comprobacionTodasLasAulas([Dias1| Resto1]):-
 	comprobarAula(Dias1),
-	H is H+1,
-	write(H),
-	comprobacionFinal(Resto1, H).
+	comprobacionTodasLasAulas(Resto1).
 
-comprobacionFinal([]).
+comprobacionTodasLasAulas([]).
 
-sumaHorasAsignatura(Asignatura, Horas) :-
+sumaHorasAsignatura(Asignatura, horario(ListaDias), Horas) :-
 	asignatura(Asignatura),
-	horario(ListaDias),
 	sumaHorasAsignatura(Asignatura, ListaDias, Horas).
 
 sumaHorasAsignatura(_Asignatura, [], 0).
@@ -42,18 +47,13 @@ comprobarAula(martes(ClasesMartes)):-
 	comprobacion(ClasesMartes, OcupadoMartes).
 
 comprobarAula(miercoles(ClasesMiercoles)):-
-	ocuLunes(OcupadoMiercoles),
-	imprimirLista(ClasesMiercoles),
+	ocuMiercoles(OcupadoMiercoles),
 	comprobacion(ClasesMiercoles, OcupadoMiercoles).
 
 comprobacion([],[]).
 comprobacion([Cabeza | Cola], [Z | Y]):-
 	\+aulaA(Cabeza, Z),
 	comprobacion(Cola, Y).
-
-horario([lunes([a, b, c]),
-		 martes([a, b, d]),
-		 miercoles([b, c, d])]).
 
 % Asignaturas Oblg
 asignatura(a).
