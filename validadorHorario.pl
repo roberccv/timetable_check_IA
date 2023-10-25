@@ -118,9 +118,9 @@ aulaA(a, a2).
 aulaA(b, a1).
 aulaA(c, a3).
 aulaA(d, a3).
-%aulaA(o1, a0).
-%aulaA(o2, a0).
-%aulaA(o3, a0).
+aulaA(o1, a0).
+aulaA(o2, a0).
+aulaA(o3, a0).
 
 
 ocuLunes([a1, n, n]).
