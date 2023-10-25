@@ -40,7 +40,7 @@ __1. Clonar este repositorio en su dispositivo para acceder al programa.__
 
 ```
 
-
+git  clone https://github.com/roberccv/timetable_check_IA.git
 
 ```
 
@@ -75,6 +75,7 @@ MODO DE USO:
 ```
 
 comprobacionFinal([lunes([a,b,c]), martes([a,b,o1]), miercoles([b,c,d])]).
+
 ```
 
 
